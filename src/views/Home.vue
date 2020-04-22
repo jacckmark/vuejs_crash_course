@@ -1,6 +1,9 @@
 <template>
     <div id="app">
+        <!-- on add-todo event addTodo method will be called -->
         <AddTodo v-on:add-todo="addTodo" />
+        <!-- binding the todos to todos property in todos component and also waiting
+        for del-todo event (then method deleteTodo will get called) -->
         <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
     </div>
 </template>
@@ -8,7 +11,9 @@
 <script>
 import Todos from "../components/Todos";
 import AddTodo from "../components/AddTodo";
+// library for making the http requests
 import axios from "axios";
+
 export default {
     name: "Home",
     components: {
@@ -21,12 +26,14 @@ export default {
         };
     },
     methods: {
+        // method for deleting an todo
         deleteTodo(id) {
             axios
                 .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
                 .then(() => (this.todos = this.todos.filter((todo) => todo.id !== id)))
                 .catch((err) => console.log(err));
         },
+        // method for adding new todo
         addTodo(newTodo) {
             const { title, completed } = newTodo;
             axios
@@ -38,6 +45,7 @@ export default {
                 .catch((err) => console.log(err));
         },
     },
+    // this will get called when component will be already created (angular afterViewInit)
     created() {
         axios
             .get("https://jsonplaceholder.typicode.com/todos?_limit=5")

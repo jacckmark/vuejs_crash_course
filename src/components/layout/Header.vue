@@ -2,6 +2,8 @@
     <header class="header">
         <h1>TodoList</h1>
         <div id="nav">
+            <!-- links in header using router-link element which will redirect us
+          to coresponding sites -->
             <router-link to="/">Home</router-link>
             <router-link to="about">About</router-link>
         </div>

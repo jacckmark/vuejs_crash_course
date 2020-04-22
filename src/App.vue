@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <Header />
+        <!-- angular router-outlet in vue is called router-view  -->
         <router-view />
     </div>
 </template>
@@ -10,6 +11,8 @@ import Header from "./components/layout/Header";
 
 export default {
     name: "App",
+    // all components that we want to use in current component should be imported and
+    // placed in components property (listing imported components)
     components: { Header },
     data() {
         return {
